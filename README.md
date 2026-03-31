@@ -28,26 +28,29 @@ Open Tab is a high-performance, minimalist New Tab replacement designed for Chro
 
 ## 📦 Installation
 
-Get the latest version of **Open Tab**:
+> [!WARNING]  
+> **Important:** Modern browsers now block direct `.crx` file installs with a `CRX_REQUIRED_PROOF_MISSING` error. To bypass this, follow the manual installation steps below.
 
-<p align="center">
-  <a href="https://github.com/OpenAppsLabs/Open-Tab/releases/latest/download/open-tab.crx">
-    <img src="assets/get-it-on-github.png" alt="Get it on GitHub" height="100"/>
-  </a>
-</p>
+### Recommended: Manual Folder Installation
 
-### How to Install:
+1. **Download** the source code (`.zip`) from the [Latest Release](https://github.com).
+2. **Extract** the ZIP file into a dedicated folder on your computer.
+3. Open your browser and navigate to `chrome://extensions/` (or `edge://extensions/`).
+4. Enable **Developer mode** using the toggle in the top right corner.
+5. Click the **Load unpacked** button.
+6. Select the **folder** where you extracted the files.
 
-1. **Download** the `Open-Tab.crx` file from the link above.
-2. Open your browser and navigate to `chrome://extensions/`.
-3. Enable **Developer mode** using the toggle in the top right corner.
-4. **Drag and drop** the downloaded `.crx` file directly into the extensions page to install.
+### Alternative: CRX Method (May be blocked)
+1. Download the `Open-Tab.crx` file.
+2. Open `chrome://extensions/` and enable **Developer mode**.
+3. **Drag and drop** the `.crx` file onto the page. 
+4. *If you see a "Package is invalid" error, use the **Manual Folder Installation** method above.*
 
 ---
 
 ## 📄 License
 
-Open Tab is licensed under the [GNU AGPL v3.0](https://www.gnu.org/licenses/agpl-3.0.en.html).
+Open Tab is licensed under the [GNU AGPL v3.0](https://gnu.org).
 
 <p align="center">
   <b>Open Apps Labs &copy; 2026</b>
