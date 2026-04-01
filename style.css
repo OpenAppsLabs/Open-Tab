@@ -608,3 +608,261 @@ body {
 #qr-placeholder.hidden {
     display: none !important;
 }
+
+.settings-btn {
+    position: fixed;
+    bottom: 24px;
+    left: 24px;
+    z-index: 100;
+}
+
+/* --- Settings Modal UI --- */
+.settings-modal-box {
+    max-width: 650px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+}
+
+.close-x-btn {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    color: var(--icon-color);
+    cursor: pointer;
+    z-index: 10;
+    padding: 4px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+.close-x-btn:hover {
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+}
+
+.settings-layout {
+    display: flex;
+    min-height: 400px;
+}
+
+.settings-sidebar {
+    width: 200px;
+    background-color: var(--hover-bg);
+    padding: 24px 16px;
+    border-right: 1px solid var(--search-border);
+}
+
+.settings-sidebar h3 {
+    margin: 0 0 24px 8px;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.settings-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tab-btn {
+    padding: 10px 12px;
+    text-align: left;
+    background: transparent;
+    border: none;
+    border-radius: 8px;
+    color: var(--text-color);
+    cursor: pointer;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+.tab-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+[data-theme="dark"] .tab-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+.tab-btn.active {
+    background-color: var(--search-bg);
+    box-shadow: 0 2px 5px var(--search-shadow);
+}
+
+.settings-content {
+    flex: 1;
+    padding: 32px;
+    background-color: var(--search-bg);
+}
+
+.settings-pane {
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+.settings-pane.active {
+    display: block;
+}
+.settings-pane h4 {
+    margin: 0 0 20px 0;
+    font-size: 1.2rem;
+    border-bottom: 1px solid var(--search-border);
+    padding-bottom: 10px;
+}
+
+.setting-group {
+    margin-bottom: 20px;
+}
+.setting-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+}
+
+.settings-select {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid var(--search-border);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-size: 0.95rem;
+    outline: none;
+}
+.settings-select:focus {
+    border-color: var(--focus-border);
+}
+
+/* iOS Toggle Switch */
+.switch-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.switch-group label {
+    margin: 0;
+}
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+}
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--placeholder);
+    transition: 0.3s;
+    border-radius: 24px;
+}
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: 0.3s;
+    border-radius: 50%;
+}
+input:checked + .slider {
+    background-color: #34c759;
+}
+input:checked + .slider:before {
+    transform: translateX(20px);
+}
+
+.settings-divider {
+    border: 0;
+    height: 1px;
+    background-color: var(--search-border);
+    margin: 30px 0 20px 0;
+}
+.modal-btn.danger {
+    background-color: #ff3b30;
+    color: white;
+}
+
+/* --- Segmented Control (Grouped Buttons) --- */
+.segmented-control {
+    display: flex;
+    background-color: var(--hover-bg);
+    padding: 4px;
+    border-radius: 12px;
+    gap: 4px;
+}
+
+.segmented-control button {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
+    color: var(--text-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.segmented-control button.active {
+    background-color: var(--search-bg);
+    box-shadow: 0 2px 8px var(--search-shadow);
+    color: var(--text-color);
+}
+
+.segmented-control button:hover:not(.active) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="dark"] .segmented-control button:hover:not(.active) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.action-group {
+    display: flex;
+    gap: 1px; /* Creates a fine divider line */
+    background-color: var(--search-border);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--search-border);
+}
+
+.action-tile {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+    background-color: var(--search-bg);
+    border: none;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-family: inherit;
+}
+
+.action-tile:hover {
+    background-color: var(--hover-bg);
+}
+
+.action-tile svg {
+    color: var(--focus-border);
+}
+
+.action-tile span {
+    font-size: 0.8rem;
+    font-weight: 600;
+}
