@@ -154,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const deleteIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
 
+  const editIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
+
   function renderLinks() {
     linksContainer.innerHTML = '';
 
@@ -168,12 +170,34 @@ document.addEventListener('DOMContentLoaded', () => {
       linkEl.setAttribute('draggable', 'true');
 
       linkEl.innerHTML = `
-        <button class="delete-btn" data-index="${index}">${deleteIconSVG}</button>
-        <div class="quick-link">
-          <div class="link-icon"><img src="${faviconUrl}" alt="${link.name}"></div>
-          <span>${link.name}</span>
-        </div>
-      `;
+  <button class="edit-btn" data-index="${index}">${editIconSVG}</button>
+  <button class="delete-btn" data-index="${index}">${deleteIconSVG}</button>
+  <div class="quick-link">
+    <div class="link-icon"><img src="${faviconUrl}" alt="${link.name}"></div>
+    <span>${link.name}</span>
+  </div>
+`;
+
+      linkEl.querySelector('.edit-btn').addEventListener('click', (e) => {
+        e.stopPropagation();
+        const index = parseInt(e.currentTarget.getAttribute('data-index'));
+        const link = quickLinks[index];
+
+        // 1. Fill the modal inputs with current link data
+        nameInput.value = link.name;
+        urlInput.value = link.url;
+
+        // 2. Change the modal title and button text to "Edit" mode
+        modal.querySelector('h3').innerText = 'Edit Quick Link';
+        const saveBtn = document.getElementById('save-link-btn');
+        saveBtn.innerText = 'Update';
+
+        // 3. Store the index being edited so we know which one to update later
+        modal.setAttribute('data-edit-index', index);
+
+        modal.classList.add('show');
+        nameInput.focus();
+      });
 
       linkEl.addEventListener('click', (e) => {
         if (!e.target.closest('.delete-btn')) {
@@ -279,9 +303,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function openModal() {
     nameInput.value = '';
     urlInput.value = '';
+    modal.querySelector('h3').innerText = 'Add Quick Link';
+    document.getElementById('save-link-btn').innerText = 'Add';
+    modal.removeAttribute('data-edit-index');
     modal.classList.add('show');
     nameInput.focus();
   }
+
   function closeModal() {
     modal.classList.remove('show');
   }
@@ -298,10 +326,10 @@ document.addEventListener('DOMContentLoaded', () => {
     let newUrl = urlInput.value.trim();
 
     if (newName && newUrl) {
+      // 1. Validation
       const isValidUrl = /^(https?:\/\/)?([\w\-]+\.)+[a-z]{2,}(\/.*)?$/i.test(
         newUrl,
       );
-
       if (!isValidUrl) {
         alert('Please enter a valid website (e.g., google.com)');
         urlInput.focus();
@@ -312,7 +340,14 @@ document.addEventListener('DOMContentLoaded', () => {
         newUrl = 'https://' + newUrl;
       }
 
-      quickLinks.push({ name: newName, url: newUrl });
+      const editIndex = modal.getAttribute('data-edit-index');
+
+      if (editIndex !== null) {
+        quickLinks[parseInt(editIndex)] = { name: newName, url: newUrl };
+        modal.removeAttribute('data-edit-index'); // Clear the edit mode
+      } else {
+        quickLinks.push({ name: newName, url: newUrl });
+      }
       saveAndRender();
       closeModal();
     }
