@@ -1,111 +1,26 @@
 <!doctype html>
 <html>
+    <head>
+        <title>New Tab</title>
+        <link rel="icon" type="image/png" href="assets/logo-32.png" />
+        <link rel="stylesheet" href="style.css" />
+    </head>
 
-<head>
-    <title>New Tab</title>
-    <link rel="icon" type="image/png" href="assets/logo-32.png" />
-    <link rel="stylesheet" href="style.css" />
-</head>
-
-<body>
-    <header class="top-header">
-        <div class="top-right-controls">
-            <button id="qr-open-btn" class="icon-btn" title="Send to Phone">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect width="5" height="5" x="3" y="3" rx="1" />
-                    <rect width="5" height="5" x="16" y="3" rx="1" />
-                    <rect width="5" height="5" x="3" y="16" rx="1" />
-                    <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
-                    <path d="M21 21v.01" />
-                    <path d="M12 7v3a2 2 0 0 1-2 2H7" />
-                    <path d="M3 12h.01" />
-                    <path d="M12 3h.01" />
-                    <path d="M12 16v.01" />
-                    <path d="M16 12h1" />
-                    <path d="M21 12v.01" />
-                    <path d="M12 21v.01" />
-                </svg>
-            </button>
-
-            <button id="theme-toggle" class="theme-btn" title="Toggle Theme">
-                <svg id="sun-icon" class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="4" />
-                    <path d="M12 2v2" />
-                    <path d="M12 20v2" />
-                    <path d="m4.93 4.93 1.41 1.41" />
-                    <path d="m17.66 17.66 1.41 1.41" />
-                    <path d="M2 12h2" />
-                    <path d="M20 12h2" />
-                    <path d="m6.34 17.66-1.41 1.41" />
-                    <path d="m19.07 4.93-1.41 1.41" />
-                </svg>
-                <svg id="moon-icon" class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
-                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
-                </svg>
-            </button>
-        </div>
-    </header>
-
-    <main class="content">
-        <div class="search-container">
-            <form id="search-form" action="https://www.google.com/search" method="GET" class="search-box">
-                <div class="engine-selector" id="engine-selector" title="Change Search Engine" role="combobox"
-                    aria-expanded="false" aria-haspopup="listbox">
-
-                    <img id="engine-icon" src="assets/google.png" alt="Engine" width="24" height="24" />
-
-                    <div class="engine-menu" id="engine-menu" role="listbox">
-                        <div class="engine-option" role="option" data-value="google"
-                            data-action="https://www.google.com/search" data-param="q" data-icon="assets/google.png">
-                            <img src="assets/google.png" width="20" height="20" />
-                            Google
-                        </div>
-
-                        <div class="engine-option" role="option" data-value="duckduckgo"
-                            data-action="https://duckduckgo.com/" data-param="q" data-icon="assets/duckduckgo.png">
-                            <img src="assets/duckduckgo.png" width="20" height="20" />
-                            DuckDuckGo
-                        </div>
-
-                        <div class="engine-option" role="option" data-value="bing"
-                            data-action="https://www.bing.com/search" data-param="q" data-icon="assets/bing.png">
-                            <img src="assets/bing.png" width="20" height="20" />
-                            Bing
-                        </div>
-                    </div>
-                </div>
-
-                <input type="text" id="search-input" name="q" class="search-input" placeholder="Search"
-                    autocomplete="off" />
-
-                <button type="button" id="mic-btn" class="mic-btn" title="Voice Search">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z" />
-                        <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
-                        <line x1="12" x2="12" y1="19" y2="22" />
-                    </svg>
-                </button>
-            </form>
-        </div>
-
-        <div class="quick-links" id="quick-links-container"></div>
-    </main>
-
-    <div id="qr-modal" class="modal-overlay">
-        <div class="modal-content qr-modal-box">
-            <h3>Send to Phone</h3>
-            <input type="text" id="qr-input" placeholder="Paste link or text here..." autocomplete="off" />
-
-            <div class="qr-display-container">
-                <div id="qr-placeholder">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
-                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <body>
+        <header class="top-header">
+            <div class="top-right-controls">
+                <button id="qr-open-btn" class="icon-btn" title="Send to Phone">
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
                         <rect width="5" height="5" x="3" y="3" rx="1" />
                         <rect width="5" height="5" x="16" y="3" rx="1" />
                         <rect width="5" height="5" x="3" y="16" rx="1" />
@@ -119,43 +34,256 @@
                         <path d="M21 12v.01" />
                         <path d="M12 21v.01" />
                     </svg>
-                    <span>QR will appear here</span>
+                </button>
+
+                <button
+                    id="theme-toggle"
+                    class="theme-btn"
+                    title="Toggle Theme"
+                >
+                    <svg
+                        id="sun-icon"
+                        class="icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="4" />
+                        <path d="M12 2v2" />
+                        <path d="M12 20v2" />
+                        <path d="m4.93 4.93 1.41 1.41" />
+                        <path d="m17.66 17.66 1.41 1.41" />
+                        <path d="M2 12h2" />
+                        <path d="M20 12h2" />
+                        <path d="m6.34 17.66-1.41 1.41" />
+                        <path d="m19.07 4.93-1.41 1.41" />
+                    </svg>
+                    <svg
+                        id="moon-icon"
+                        class="icon"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <main class="content">
+            <div class="search-container">
+                <form
+                    id="search-form"
+                    action="https://www.google.com/search"
+                    method="GET"
+                    class="search-box"
+                >
+                    <div
+                        class="engine-selector"
+                        id="engine-selector"
+                        title="Change Search Engine"
+                        role="combobox"
+                        aria-expanded="false"
+                        aria-haspopup="listbox"
+                    >
+                        <img
+                            id="engine-icon"
+                            src="assets/google.png"
+                            alt="Engine"
+                            width="24"
+                            height="24"
+                        />
+
+                        <div
+                            class="engine-menu"
+                            id="engine-menu"
+                            role="listbox"
+                        >
+                            <div
+                                class="engine-option"
+                                role="option"
+                                data-value="google"
+                                data-action="https://www.google.com/search"
+                                data-param="q"
+                                data-icon="assets/google.png"
+                            >
+                                <img
+                                    src="assets/google.png"
+                                    width="20"
+                                    height="20"
+                                />
+                                Google
+                            </div>
+
+                            <div
+                                class="engine-option"
+                                role="option"
+                                data-value="duckduckgo"
+                                data-action="https://duckduckgo.com/"
+                                data-param="q"
+                                data-icon="assets/duckduckgo.png"
+                            >
+                                <img
+                                    src="assets/duckduckgo.png"
+                                    width="20"
+                                    height="20"
+                                />
+                                DuckDuckGo
+                            </div>
+
+                            <div
+                                class="engine-option"
+                                role="option"
+                                data-value="bing"
+                                data-action="https://www.bing.com/search"
+                                data-param="q"
+                                data-icon="assets/bing.png"
+                            >
+                                <img
+                                    src="assets/bing.png"
+                                    width="20"
+                                    height="20"
+                                />
+                                Bing
+                            </div>
+                        </div>
+                    </div>
+
+                    <input
+                        type="text"
+                        id="search-input"
+                        name="q"
+                        class="search-input"
+                        placeholder="Search"
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+
+                    <button
+                        type="button"
+                        id="mic-btn"
+                        class="mic-btn"
+                        title="Voice Search"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="20"
+                            height="20"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <path
+                                d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"
+                            />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" x2="12" y1="19" y2="22" />
+                        </svg>
+                    </button>
+                </form>
+            </div>
+
+            <div class="quick-links" id="quick-links-container"></div>
+        </main>
+
+        <div id="qr-modal" class="modal-overlay">
+            <div class="modal-content qr-modal-box">
+                <h3>Send to Phone</h3>
+                <input
+                    type="text"
+                    id="qr-input"
+                    placeholder="Paste link or text here..."
+                    autocomplete="off"
+                />
+
+                <div class="qr-display-container">
+                    <div id="qr-placeholder">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="32"
+                            height="32"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="1.5"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                        >
+                            <rect width="5" height="5" x="3" y="3" rx="1" />
+                            <rect width="5" height="5" x="16" y="3" rx="1" />
+                            <rect width="5" height="5" x="3" y="16" rx="1" />
+                            <path d="M21 16h-3a2 2 0 0 0-2 2v3" />
+                            <path d="M21 21v.01" />
+                            <path d="M12 7v3a2 2 0 0 1-2 2H7" />
+                            <path d="M3 12h.01" />
+                            <path d="M12 3h.01" />
+                            <path d="M12 16v.01" />
+                            <path d="M16 12h1" />
+                            <path d="M21 12v.01" />
+                            <path d="M12 21v.01" />
+                        </svg>
+                        <span>QR will appear here</span>
+                    </div>
+
+                    <div id="qrcode"></div>
                 </div>
 
-                <div id="qrcode"></div>
-            </div>
-
-            <div class="modal-actions">
-                <button id="qr-close-btn" class="modal-btn cancel">
-                    Close
-                </button>
+                <div class="modal-actions">
+                    <button id="qr-close-btn" class="modal-btn cancel">
+                        Close
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="add-link-modal" class="modal-overlay">
-        <div class="modal-content">
-            <h3>Add Quick Link</h3>
-            <input type="text" id="new-link-name" placeholder="Title" autocomplete="off" />
-            <input type="text" id="new-link-url" placeholder="URL" autocomplete="off" />
-            <div class="modal-actions">
-                <button id="cancel-link-btn" class="modal-btn cancel">
-                    Cancel
-                </button>
-                <button id="save-link-btn" class="modal-btn save">
-                    Add
-                </button>
+        <div id="add-link-modal" class="modal-overlay">
+            <div class="modal-content">
+                <h3>Add Quick Link</h3>
+                <input
+                    type="text"
+                    id="new-link-name"
+                    placeholder="Title"
+                    autocomplete="off"
+                />
+                <input
+                    type="text"
+                    id="new-link-url"
+                    placeholder="URL"
+                    autocomplete="off"
+                />
+                <div class="modal-actions">
+                    <button id="cancel-link-btn" class="modal-btn cancel">
+                        Cancel
+                    </button>
+                    <button id="save-link-btn" class="modal-btn save">
+                        Add
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div id="undo-toast" class="toast">
-        <span>Shortcut removed</span>
-        <button id="undo-btn">Undo</button>
-    </div>
+        <div id="undo-toast" class="toast">
+            <span>Shortcut removed</span>
+            <button id="undo-btn">Undo</button>
+        </div>
 
-    <script src="qrcode.min.js" defer></script>
-    <script src="newtab.js" defer></script>
-</body>
-
+        <script src="qrcode.min.js" defer></script>
+        <script src="newtab.js" defer></script>
+    </body>
 </html>
