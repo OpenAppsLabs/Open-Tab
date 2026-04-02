@@ -49,7 +49,3 @@ Open Tab is a high-performance, minimalist New Tab replacement designed for Chro
 ## 📄 License
 
 Open Tab is licensed under the [GNU AGPL v3.0](https://gnu.org).
-
-<p align="center">
-  <b>Open Apps Labs &copy; 2026</b>
-</p>
