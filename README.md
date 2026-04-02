@@ -1,8 +1,6 @@
 <h1 align="center">Open Tab</h1>
 
-<p align="center">
-  <b>Part of the Open Apps Labs.</b>
-</p>
+<img width="1600" height="860" alt="image" src="/assets/open-tab.png" />
 
 <p align="center">
   <img src="https://img.shields.io/badge/Version-1.0.0-black?style=for-the-badge&logo=chrome&color=%23000000"/>
