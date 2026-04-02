@@ -31,18 +31,12 @@ Open Tab is a high-performance, minimalist New Tab replacement designed for Chro
 
 ### Recommended: Manual Folder Installation
 
-1. **Download** the source code (`.zip`) from the [Latest Release](https://github.com).
+1. **Download** the source code (`.zip`)
 2. **Extract** the ZIP file into a dedicated folder on your computer.
 3. Open your browser and navigate to `chrome://extensions/` (or `edge://extensions/`).
 4. Enable **Developer mode** using the toggle in the top right corner.
 5. Click the **Load unpacked** button.
 6. Select the **folder** where you extracted the files.
-
-### Alternative: CRX Method (May be blocked)
-1. Download the `Open-Tab.crx` file.
-2. Open `chrome://extensions/` and enable **Developer mode**.
-3. **Drag and drop** the `.crx` file onto the page. 
-4. *If you see a "Package is invalid" error, use the **Manual Folder Installation** method above.*
 
 ---
 
