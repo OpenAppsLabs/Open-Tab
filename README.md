@@ -3,7 +3,6 @@
 <img width="1600" height="860" alt="image" src="/assets/open-tab.png" />
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Version-1.0.0-black?style=for-the-badge&logo=chrome&color=%23000000"/>
   <img src="https://img.shields.io/badge/License-AGPL%20V3-black?style=for-the-badge&logo=gnu&color=%23000000"/>
   <img src="https://img.shields.io/badge/Platform-Chrome%20%7C%20Edge-black?style=for-the-badge&logo=googlechrome&color=%23000000"/>
 </p>
