@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // --- 1. THEME INITIALIZATION ---
   const body = document.body;
   const themeToggle = document.getElementById("theme-toggle");
   const savedTheme = localStorage.getItem("theme");
@@ -19,7 +18,6 @@ document.addEventListener("DOMContentLoaded", () => {
     body.setAttribute("data-theme", newTheme);
     localStorage.setItem("theme", newTheme);
 
-    // Sync settings segments if open
     const themeSegments = document.getElementById("theme-segments");
     if (themeSegments) {
       themeSegments.querySelectorAll("button").forEach((btn) => {
@@ -28,7 +26,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 2. SEARCH ENGINE LOGIC ---
   const searchForm = document.getElementById("search-form");
   const searchInput = document.getElementById("search-input");
   const engineSelector = document.getElementById("engine-selector");
@@ -61,7 +58,6 @@ document.addEventListener("DOMContentLoaded", () => {
       updateEngineSettings(option);
       searchInput.focus();
 
-      // Sync settings segments if open
       const engineSegments = document.getElementById("engine-segments");
       if (engineSegments) {
         engineSegments.querySelectorAll("button").forEach((btn) => {
@@ -85,7 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 3. VOICE SEARCH (MIC) LOGIC ---
   const micBtn = document.getElementById("mic-btn");
   if ("webkitSpeechRecognition" in window) {
     const recognition = new webkitSpeechRecognition();
@@ -118,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     micBtn.style.display = "none";
   }
 
-  // --- 4. QR CODE LOGIC ---
   const qrModal = document.getElementById("qr-modal");
   const qrInput = document.getElementById("qr-input");
   const qrOpenBtn = document.getElementById("qr-open-btn");
@@ -163,7 +157,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.target === qrModal) qrModal.classList.remove("show");
   });
 
-  // --- 5. QUICK LINKS LOGIC ---
   const linksContainer = document.getElementById("quick-links-container");
   const defaultLinks = [
     { name: "YouTube", url: "https://www.youtube.com" },
@@ -187,6 +180,19 @@ document.addEventListener("DOMContentLoaded", () => {
   let draggedItemIndex = null;
   const deleteIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>`;
   const editIconSVG = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/><path d="m15 5 4 4"/></svg>`;
+
+  function applyActionButtonsVisibility() {
+    const hideEdit = localStorage.getItem("hideEditBtn") === "true";
+    const hideDelete = localStorage.getItem("hideDeleteBtn") === "true";
+
+    document.querySelectorAll(".edit-btn").forEach((btn) => {
+      btn.style.display = hideEdit ? "none" : "";
+    });
+
+    document.querySelectorAll(".delete-btn").forEach((btn) => {
+      btn.style.display = hideDelete ? "none" : "flex";
+    });
+  }
 
   function renderLinks() {
     linksContainer.innerHTML = "";
@@ -289,6 +295,8 @@ document.addEventListener("DOMContentLoaded", () => {
         showUndoToast(deletedLink, idx);
       });
     });
+
+    applyActionButtonsVisibility();
   }
 
   function saveAndRender() {
@@ -296,7 +304,6 @@ document.addEventListener("DOMContentLoaded", () => {
     renderLinks();
   }
 
-  // --- UNDO TOAST LOGIC ---
   const toast = document.getElementById("undo-toast");
   const undoBtn = document.getElementById("undo-btn");
   let toastTimeout;
@@ -323,7 +330,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- ADD/EDIT MODAL LOGIC ---
   const modal = document.getElementById("add-link-modal");
   const nameInput = document.getElementById("new-link-name");
   const urlInput = document.getElementById("new-link-url");
@@ -384,7 +390,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderLinks();
 
-  // --- KEYBOARD SHORTCUTS ---
   document.addEventListener("keydown", (e) => {
     if (document.activeElement.tagName === "INPUT") return;
     if (e.key === "/") {
@@ -400,7 +405,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- 6. SETTINGS MODAL & LOGIC ---
   const settingsModal = document.getElementById("settings-modal");
   const settingsBtn = document.getElementById("settings-btn");
   const tabs = document.querySelectorAll(".tab-btn");
@@ -426,7 +430,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Close when clicking outside modal box
   settingsModal.addEventListener("click", (e) => {
     if (e.target === settingsModal) closeSettings();
   });
@@ -477,7 +480,6 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.target = val;
   });
 
-  // Header Icon Toggles
   function handleToggle(id, element, storageKey) {
     const cb = document.getElementById(id);
     if (!cb || !element) return;
@@ -506,7 +508,23 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Data Actions
+  function setupActionToggle(toggleId, storageKey) {
+    const toggle = document.getElementById(toggleId);
+    if (!toggle) return;
+
+    const isHidden = localStorage.getItem(storageKey) === "true";
+    toggle.checked = !isHidden;
+
+    toggle.addEventListener("change", (e) => {
+      const hide = !e.target.checked;
+      localStorage.setItem(storageKey, hide);
+      applyActionButtonsVisibility();
+    });
+  }
+
+  setupActionToggle("setting-show-edit", "hideEditBtn");
+  setupActionToggle("setting-show-delete", "hideDeleteBtn");
+
   const btnRestoreLinks = document.getElementById("btn-restore-links");
   if (btnRestoreLinks) {
     btnRestoreLinks.addEventListener("click", () => {
