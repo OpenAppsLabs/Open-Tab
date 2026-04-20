@@ -293,7 +293,7 @@ body {
 }
 
 .quick-link-wrapper:hover .link-icon {
-    transform: translateY(-4px);
+    transform: translateY(-2px);
 }
 .link-icon img {
     width: 28px;

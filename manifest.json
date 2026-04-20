@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Open-Tab",
+  "name": "New-Tab",
   "description": "A clean, minimalist new tab dashboard with built-in utilities.",
   "version": "1.0.0",
   "offline_enabled": true,
