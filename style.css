@@ -900,3 +900,8 @@ input:checked + .slider:before {
 .about-box.clickable:hover {
     background-color: var(--hover-bg);
 }
+
+.engine-option img,
+#engine-icon {
+    border-radius: 50%;
+}

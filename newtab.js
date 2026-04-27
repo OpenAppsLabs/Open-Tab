@@ -68,6 +68,20 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   searchForm.addEventListener("submit", (e) => {
+    const currentEngine = localStorage.getItem("searchEngine");
+
+    if (currentEngine === "gemini") {
+      e.preventDefault();
+
+      const query = searchInput.value.trim();
+      if (!query) return;
+
+      const encoded = encodeURIComponent(query);
+
+      window.location.href = `https://www.google.com/search?q=${encoded}&udm=50`;
+      return;
+    }
+
     const query = searchInput.value.trim();
     const isUrl = /^(https?:\/\/)?([\w\-]+\.)+[a-z]{2,}(\/.*)?$/i.test(query);
 
